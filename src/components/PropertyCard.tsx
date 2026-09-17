@@ -1,5 +1,9 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { createClient } from '@/lib/supabase/client'
 import { formatPrice, getPropertyTypeLabel } from '@/lib/utils/format'
 import type { Property, PropertyImage } from '@/types/database'
 
@@ -10,6 +14,57 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property }: PropertyCardProps) {
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const checkFavorite = async () => {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+
+      if (user) {
+        const { data } = await supabase
+          .from('favorites')
+          .select('id')
+          .eq('user_id', user.id)
+          .eq('property_id', property.id)
+          .single()
+
+        setIsFavorite(!!data)
+      }
+      setLoading(false)
+    }
+
+    checkFavorite()
+  }, [property.id])
+
+  const toggleFavorite = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      window.location.href = '/accedi'
+      return
+    }
+
+    if (isFavorite) {
+      await supabase
+        .from('favorites')
+        .delete()
+        .eq('user_id', user.id)
+        .eq('property_id', property.id)
+      setIsFavorite(false)
+    } else {
+      await supabase
+        .from('favorites')
+        .insert({ user_id: user.id, property_id: property.id })
+      setIsFavorite(true)
+    }
+  }
+
   const primaryImage = property.property_images?.find(img => img.is_primary) ?? property.property_images?.[0]
   const fallbackImage = 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800'
 
@@ -27,6 +82,21 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             {getPropertyTypeLabel(property.property_type)}
           </span>
         </div>
+        {!loading && (
+          <button
+            onClick={toggleFavorite}
+            className="absolute top-4 right-4 p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
+          >
+            <svg
+              className={`w-5 h-5 ${isFavorite ? 'text-red-500 fill-red-500' : 'text-gray-400'}`}
+              fill={isFavorite ? 'currentColor' : 'none'}
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </button>
+        )}
       </div>
 
       <div className="p-6">
