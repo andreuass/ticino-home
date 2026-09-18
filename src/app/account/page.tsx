@@ -42,7 +42,7 @@ export default async function AccountPage() {
 
           {/* Profile Info */}
           <div className="card p-6 mb-8">
-            <h2 className="font-display text-xl mb-4">Profilo</h2>
+            <h2 className=" text-xl mb-4">Profilo</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <p className="text-sm text-brown/50">Nome</p>
@@ -73,7 +73,7 @@ export default async function AccountPage() {
 
           {/* Favorites */}
           <div className="card p-6 mb-8">
-            <h2 className="font-display text-xl mb-4">Immobili Preferiti</h2>
+            <h2 className=" text-xl mb-4">Immobili Preferiti</h2>
             {favorites && favorites.length > 0 ? (
               <div className="space-y-4">
                 {favorites.map((fav) => (
@@ -104,7 +104,7 @@ export default async function AccountPage() {
 
           {/* Inquiries */}
           <div className="card p-6">
-            <h2 className="font-display text-xl mb-4">Le Mie Richieste</h2>
+            <h2 className=" text-xl mb-4">Le Mie Richieste</h2>
             {inquiries && inquiries.length > 0 ? (
               <div className="space-y-4">
                 {inquiries.map((inquiry) => (

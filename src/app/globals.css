@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
@@ -9,8 +9,6 @@
   --color-brown-light: #5a4433;
   --color-sage: #8b9a7d;
   --color-sage-light: #a8b599;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 html {
@@ -20,13 +18,15 @@ html {
 body {
   background-color: var(--color-cream);
   color: var(--color-brown);
-  font-family: var(--font-sans);
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 400;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 500;
   line-height: 1.2;
 }
@@ -77,7 +77,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0.375rem;
     background-color: white;
     color: var(--color-brown);
-    font-family: var(--font-sans);
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.9375rem;
     transition: all 0.2s;
   }
@@ -106,7 +106,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .section-title {
     font-size: 2.5rem;
-    font-family: var(--font-display);
     font-weight: 500;
     margin-bottom: 2rem;
     letter-spacing: -0.01em;

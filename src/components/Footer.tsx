@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href="/" className="text-2xl font-display font-semibold">
+            <Link href="/" className="text-2xl  font-semibold">
               Ticino<span className="text-terracotta">Home</span>
             </Link>
             <p className="mt-4 text-cream/70 text-sm max-w-md">
@@ -18,7 +18,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-lg mb-4">Link Rapidi</h4>
+            <h4 className=" text-lg mb-4">Link Rapidi</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/immobili" className="text-cream/70 hover:text-terracotta transition-colors">
@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display text-lg mb-4">Contatti</h4>
+            <h4 className=" text-lg mb-4">Contatti</h4>
             <ul className="space-y-2 text-sm text-cream/70">
               <li>Via principal 123</li>
               <li>6900 Lugano, Ticino</li>

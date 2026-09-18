@@ -24,27 +24,27 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-display mb-8">Dashboard</h1>
+      <h1 className="text-2xl  mb-8">Dashboard</h1>
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="card p-6">
           <p className="text-sm text-brown/60 mb-1">Immobili</p>
-          <p className="text-3xl font-display">{propertiesCount ?? 0}</p>
+          <p className="text-3xl ">{propertiesCount ?? 0}</p>
           <Link href="/admin/immobili" className="text-sm text-terracotta hover:underline mt-2 inline-block">
             Gestisci →
           </Link>
         </div>
         <div className="card p-6">
           <p className="text-sm text-brown/60 mb-1">Richieste</p>
-          <p className="text-3xl font-display">{inquiriesCount ?? 0}</p>
+          <p className="text-3xl ">{inquiriesCount ?? 0}</p>
           <Link href="/admin/richieste" className="text-sm text-terracotta hover:underline mt-2 inline-block">
             Vedi tutte →
           </Link>
         </div>
         <div className="card p-6">
           <p className="text-sm text-brown/60 mb-1">Utenti</p>
-          <p className="text-3xl font-display">{usersCount ?? 0}</p>
+          <p className="text-3xl ">{usersCount ?? 0}</p>
           <Link href="/admin/utenti" className="text-sm text-terracotta hover:underline mt-2 inline-block">
             Gestisci →
           </Link>
@@ -54,7 +54,7 @@ export default async function AdminDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Recent Properties */}
         <div className="card p-6">
-          <h2 className="font-display text-lg mb-4">Immobili Recenti</h2>
+          <h2 className=" text-lg mb-4">Immobili Recenti</h2>
           {recentProperties && recentProperties.length > 0 ? (
             <ul className="space-y-3">
               {recentProperties.map((property) => (
@@ -80,7 +80,7 @@ export default async function AdminDashboard() {
 
         {/* Recent Inquiries */}
         <div className="card p-6">
-          <h2 className="font-display text-lg mb-4">Richieste Recenti</h2>
+          <h2 className=" text-lg mb-4">Richieste Recenti</h2>
           {recentInquiries && recentInquiries.length > 0 ? (
             <ul className="space-y-3">
               {recentInquiries.map((inquiry) => (

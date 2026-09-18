@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -14,11 +13,11 @@ export default function ContattiPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div>
-              <h2 className="font-display text-2xl mb-6">Informazioni</h2>
+              <h2 className=" text-2xl mb-6">Informazioni</h2>
 
               <div className="space-y-6">
                 <div className="card p-6">
-                  <h3 className="font-display text-lg mb-2">Indirizzo</h3>
+                  <h3 className=" text-lg mb-2">Indirizzo</h3>
                   <p className="text-brown/70">
                     Via principale 123<br />
                     6900 Lugano, Ticino<br />
@@ -27,7 +26,7 @@ export default function ContattiPage() {
                 </div>
 
                 <div className="card p-6">
-                  <h3 className="font-display text-lg mb-2">Telefono</h3>
+                  <h3 className=" text-lg mb-2">Telefono</h3>
                   <p className="text-brown/70">
                     <a href="tel:+41911234567" className="hover:text-terracotta">
                       +41 91 123 45 67
@@ -36,7 +35,7 @@ export default function ContattiPage() {
                 </div>
 
                 <div className="card p-6">
-                  <h3 className="font-display text-lg mb-2">Email</h3>
+                  <h3 className=" text-lg mb-2">Email</h3>
                   <p className="text-brown/70">
                     <a href="mailto:info@ticinohome.ch" className="hover:text-terracotta">
                       info@ticinohome.ch
@@ -45,7 +44,7 @@ export default function ContattiPage() {
                 </div>
 
                 <div className="card p-6">
-                  <h3 className="font-display text-lg mb-2">Orari</h3>
+                  <h3 className=" text-lg mb-2">Orari</h3>
                   <p className="text-brown/70">
                     Lunedì - Venerdì: 09:00 - 18:00<br />
                     Sabato: 09:00 - 12:00<br />
@@ -57,7 +56,7 @@ export default function ContattiPage() {
 
             {/* Contact Form */}
             <div>
-              <h2 className="font-display text-2xl mb-6">Inviaci un Messaggio</h2>
+              <h2 className=" text-2xl mb-6">Inviaci un Messaggio</h2>
 
               <div className="card p-6">
                 <form className="space-y-6">

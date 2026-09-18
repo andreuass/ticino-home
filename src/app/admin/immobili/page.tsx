@@ -13,7 +13,7 @@ export default async function AdminPropertiesPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-display">Immobili</h1>
+        <h1 className="text-2xl ">Immobili</h1>
         <Link href="/admin/immobili/nuovo" className="btn-primary">
           Nuovo Immobile
         </Link>
@@ -39,7 +39,7 @@ export default async function AdminPropertiesPage() {
                   <div className="text-sm text-brown/50">{property.city}</div>
                 </td>
                 <td className="px-6 py-4 text-sm capitalize">{property.property_type}</td>
-                <td className="px-6 py-4 font-display">{formatPrice(property.price, property.currency)}</td>
+                <td className="px-6 py-4 ">{formatPrice(property.price, property.currency)}</td>
                 <td className="px-6 py-4">
                   <span className={`text-xs px-2 py-1 rounded ${getStatusColor(property.status)}`}>
                     {getStatusLabel(property.status)}

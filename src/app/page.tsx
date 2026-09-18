@@ -25,7 +25,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920')] bg-cover bg-center opacity-30" />
 
         <div className="relative container-page text-center text-cream py-20">
-          <h1 className="text-5xl md:text-7xl font-display font-semibold mb-6">
+          <h1 className="text-5xl md:text-7xl  font-semibold mb-6">
             La Tua Casa nel <span className="text-terracotta">Ticino</span>
           </h1>
           <p className="text-xl md:text-2xl text-cream/80 max-w-2xl mx-auto mb-10 font-light">
@@ -90,7 +90,7 @@ export default async function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
               </div>
-              <h3 className="font-display text-2xl mb-3">Acquisto</h3>
+              <h3 className=" text-2xl mb-3">Acquisto</h3>
               <p className="text-brown/70 text-sm">
                 Ti guidiamo nell&apos;acquisto della casa dei tuoi sogni, dalla ricerca alla stipula.
               </p>
@@ -102,7 +102,7 @@ export default async function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="font-display text-2xl mb-3">Vendita</h3>
+              <h3 className=" text-2xl mb-3">Vendita</h3>
               <p className="text-brown/70 text-sm">
                 Valorizziamo il tuo immobile con fotografie professionali e virtual tour.
               </p>
@@ -114,7 +114,7 @@ export default async function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="font-display text-2xl mb-3">Virtual Tour</h3>
+              <h3 className=" text-2xl mb-3">Virtual Tour</h3>
               <p className="text-brown/70 text-sm">
                 Tour virtuali a 360° per presentare il tuo immobile ai potenziali acquirenti.
               </p>
@@ -126,7 +126,7 @@ export default async function HomePage() {
       {/* CTA Section */}
       <section className="py-20 bg-terracotta text-cream">
         <div className="container-page text-center">
-          <h2 className="text-4xl md:text-5xl font-display mb-6">
+          <h2 className="text-4xl md:text-5xl  mb-6">
             Hai un Immobile da Vendere?
           </h2>
           <p className="text-xl text-cream/80 max-w-2xl mx-auto mb-10">

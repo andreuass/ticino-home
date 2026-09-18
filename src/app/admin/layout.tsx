@@ -31,7 +31,7 @@ export default async function AdminLayout({
       <header className="bg-brown text-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/admin" className="font-display text-xl">
+            <Link href="/admin" className=" text-xl">
               Ticino<span className="text-terracotta">Home</span> Admin
             </Link>
             <div className="flex items-center gap-4">

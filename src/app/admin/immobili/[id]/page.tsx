@@ -150,7 +150,7 @@ export default function EditPropertyPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-display">Modifica Immobile</h1>
+        <h1 className="text-2xl ">Modifica Immobile</h1>
         <Link href="/admin/immobili" className="text-brown/70 hover:text-brown">
           ← Torna alla lista
         </Link>

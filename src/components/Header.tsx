@@ -62,7 +62,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-display font-semibold text-brown">
+            <span className="text-2xl  font-semibold text-brown">
               Ticino<span className="text-terracotta">Home</span>
             </span>
           </Link>

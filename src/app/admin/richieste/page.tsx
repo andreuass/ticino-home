@@ -10,7 +10,7 @@ export default async function AdminInquiriesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-display mb-8">Richieste</h1>
+      <h1 className="text-2xl  mb-8">Richieste</h1>
 
       <div className="card overflow-hidden">
         <table className="w-full">

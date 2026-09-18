@@ -175,7 +175,7 @@ export default function NewPropertyPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-display">Nuovo Immobile</h1>
+        <h1 className="text-2xl ">Nuovo Immobile</h1>
         <Link href="/admin/immobili" className="text-brown/60 hover:text-brown">
           ← Indietro
         </Link>
@@ -190,7 +190,7 @@ export default function NewPropertyPage() {
 
         {/* Basic Info */}
         <div className="card p-6">
-          <h2 className="font-display text-lg mb-4">Informazioni Base</h2>
+          <h2 className=" text-lg mb-4">Informazioni Base</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium mb-2">Titolo *</label>
@@ -258,7 +258,7 @@ export default function NewPropertyPage() {
 
         {/* Location */}
         <div className="card p-6">
-          <h2 className="font-display text-lg mb-4">Localizzazione</h2>
+          <h2 className=" text-lg mb-4">Localizzazione</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">Città *</label>
@@ -296,7 +296,7 @@ export default function NewPropertyPage() {
 
         {/* Features */}
         <div className="card p-6">
-          <h2 className="font-display text-lg mb-4">Caratteristiche</h2>
+          <h2 className=" text-lg mb-4">Caratteristiche</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">Locali</label>
@@ -383,7 +383,7 @@ export default function NewPropertyPage() {
 
         {/* Amenities */}
         <div className="card p-6">
-          <h2 className="font-display text-lg mb-4">Comfort</h2>
+          <h2 className=" text-lg mb-4">Comfort</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { name: 'garage', label: 'Garage' },
@@ -412,7 +412,7 @@ export default function NewPropertyPage() {
 
         {/* Media */}
         <div className="card p-6">
-          <h2 className="font-display text-lg mb-4">Media</h2>
+          <h2 className=" text-lg mb-4">Media</h2>
 
           <div className="mb-6">
             <label className="block text-sm font-medium mb-2">Foto</label>
