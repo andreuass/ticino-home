@@ -67,7 +67,9 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ slug:
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
-    const { error } = await supabase.from('inquiries').insert({
+    console.log('Submitting inquiry:', { property_id: property?.id, name: formData.name, email: formData.email })
+
+    const payload = {
       property_id: property?.id,
       user_id: user?.id || null,
       type: 'info',
@@ -75,10 +77,14 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ slug:
       email: formData.email,
       phone: formData.phone || null,
       message: formData.message,
-    })
+    }
+    console.log('Payload:', payload)
+
+    const { error } = await supabase.from('inquiries').insert(payload)
 
     if (error) {
-      setFormError('Errore durante l\'invio. Riprova.')
+      console.error('Inquiry error:', error)
+      setFormError(error.message || 'Errore durante l\'invio. Riprova.')
       setFormStatus('error')
     } else {
       setFormStatus('success')
