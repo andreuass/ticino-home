@@ -16,6 +16,16 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ slug:
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [formError, setFormError] = useState('')
+
   useEffect(() => {
     params.then(async ({ slug }) => {
       const supabase = createClient()
@@ -30,13 +40,51 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ slug:
       setLoading(false)
 
       if (data) {
+        // Update views
         supabase
           .from('properties')
           .update({ views: (data.views || 0) + 1 })
           .eq('id', data.id)
+
+        // Pre-fill message
+        setFormData(prev => ({
+          ...prev,
+          message: `Buongiorno, sono interessato/a all'immobile "${data.title}". Potrebbe contattarmi?`
+        }))
       }
     })
   }, [params])
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setFormStatus('loading')
+    setFormError('')
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    const { error } = await supabase.from('inquiries').insert({
+      property_id: property?.id,
+      user_id: user?.id || null,
+      type: 'info',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || null,
+      message: formData.message,
+    })
+
+    if (error) {
+      setFormError('Errore durante l\'invio. Riprova.')
+      setFormStatus('error')
+    } else {
+      setFormStatus('success')
+      setFormData({ name: '', email: '', phone: '', message: '' })
+    }
+  }
 
   if (loading) {
     return (
@@ -241,37 +289,72 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ slug:
                 <div className="bg-white rounded-2xl p-8 shadow-sm border border-brown/5">
                   <h3 className="text-lg font-light mb-6">Richiedi informazioni</h3>
 
-                  <form className="space-y-4">
-                    <input
-                      type="text"
-                      placeholder="Nome completo"
-                      className="w-full px-4 py-3 border border-brown/10 rounded-lg bg-cream/50 focus:outline-none focus:border-terracotta transition-colors"
-                      required
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      className="w-full px-4 py-3 border border-brown/10 rounded-lg bg-cream/50 focus:outline-none focus:border-terracotta transition-colors"
-                      required
-                    />
-                    <input
-                      type="tel"
-                      placeholder="Telefono"
-                      className="w-full px-4 py-3 border border-brown/10 rounded-lg bg-cream/50 focus:outline-none focus:border-terracotta transition-colors"
-                    />
-                    <textarea
-                      placeholder="Messaggio"
-                      rows={4}
-                      className="w-full px-4 py-3 border border-brown/10 rounded-lg bg-cream/50 focus:outline-none focus:border-terracotta transition-colors resize-none"
-                      defaultValue={`Buongiorno, sono interessato/a all'immobile "${property.title}".`}
-                    />
-                    <button
-                      type="submit"
-                      className="w-full py-4 bg-terracotta text-white rounded-lg hover:bg-terracotta/90 transition-colors font-medium"
-                    >
-                      Invia richiesta
-                    </button>
-                  </form>
+                  {formStatus === 'success' ? (
+                    <div className="text-center py-8">
+                      <svg className="w-16 h-16 mx-auto text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <p className="text-lg font-medium mb-2">Richiesta inviata!</p>
+                      <p className="text-brown/60 text-sm">Ti contatteremo presto.</p>
+                      <button
+                        onClick={() => setFormStatus('idle')}
+                        className="mt-4 text-sm text-terracotta hover:underline"
+                      >
+                        Invia un'altra richiesta
+                      </button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleFormSubmit} className="space-y-4">
+                      {formError && (
+                        <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">
+                          {formError}
+                        </div>
+                      )}
+
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Nome completo"
+                        value={formData.name}
+                        onChange={handleFormChange}
+                        className="w-full px-4 py-3 border border-brown/10 rounded-lg bg-cream/50 focus:outline-none focus:border-terracotta transition-colors"
+                        required
+                      />
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleFormChange}
+                        className="w-full px-4 py-3 border border-brown/10 rounded-lg bg-cream/50 focus:outline-none focus:border-terracotta transition-colors"
+                        required
+                      />
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Telefono"
+                        value={formData.phone}
+                        onChange={handleFormChange}
+                        className="w-full px-4 py-3 border border-brown/10 rounded-lg bg-cream/50 focus:outline-none focus:border-terracotta transition-colors"
+                      />
+                      <textarea
+                        name="message"
+                        placeholder="Messaggio"
+                        rows={4}
+                        value={formData.message}
+                        onChange={handleFormChange}
+                        className="w-full px-4 py-3 border border-brown/10 rounded-lg bg-cream/50 focus:outline-none focus:border-terracotta transition-colors resize-none"
+                        required
+                      />
+                      <button
+                        type="submit"
+                        disabled={formStatus === 'loading'}
+                        className="w-full py-4 bg-terracotta text-white rounded-lg hover:bg-terracotta/90 transition-colors font-medium disabled:opacity-50"
+                      >
+                        {formStatus === 'loading' ? 'Invio in corso...' : 'Invia richiesta'}
+                      </button>
+                    </form>
+                  )}
 
                   {/* Agent */}
                   {property.agents && (
